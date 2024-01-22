@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .feliz-aniversario {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .emoji {
+            font-size: 2em;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .brilho {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #ffeb3b;
+            border-radius: 50%;
+            opacity: 0;
+            animation: brilho-animacao 1s linear infinite;
+        }
+
+        @keyframes brilho-animacao {
+            0% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+        }
+
+        .mensagem {
+            display: none;
+            font-size: 1.2em;
+            color: #333;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="feliz-aniversario" onmousemove="criarBrilho(event)">
+        <div class="emoji" onclick="criarBrilho(event); mostrarMensagem()">🎂</div>
+        <h1>Feliz Aniversário</h1>
+        <p class="mensagem" id="mensagem">Deus te abençoe e te dê muitos anos de vida e felicidade!</p>
+    </div>
+
+    <script>
+        function criarBrilho(event) {
+            const brilho = document.createElement('div');
+            brilho.classList.add('brilho');
+            brilho.style.left = `${event.clientX}px`;
+            brilho.style.top = `${event.clientY}px`;
+
+            document.body.appendChild(brilho);
+
+            setTimeout(() => {
+                brilho.remove();
+            }, 1000);
+        }
+
+        function mostrarMensagem() {
+            const mensagem = document.getElementById('mensagem');
+            mensagem.style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>
